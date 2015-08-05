@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>select.png</file>
+        <file>polyline.png</file>
+    </qresource>
+</RCC>
