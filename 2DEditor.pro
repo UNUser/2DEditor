@@ -30,6 +30,6 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 RESOURCES += \
-    Images.qrc
+    Icons.qrc
 
 OTHER_FILES +=

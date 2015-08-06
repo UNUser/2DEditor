@@ -31,10 +31,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->actionSelectionMode->setChecked(true);
     ui->actionSelectionMode->setData(Scene::SelectionMode);
-    ui->actionSelectionMode->setIcon(QIcon(":/select.png"));
+    ui->actionSelectionMode->setIcon(QIcon(":/Icons/select.png"));
 
     ui->actionPolylineMode->setData(Scene::PolylineMode);
-    ui->actionPolylineMode->setIcon((QIcon(":/polyline.png")));
+    ui->actionPolylineMode->setIcon((QIcon(":/Icons/polyline.png")));
 
     actionGroup->addAction(ui->actionSelectionMode);
     actionGroup->addAction(ui->actionPolylineMode);
