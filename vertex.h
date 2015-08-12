@@ -7,6 +7,9 @@
 
 #include "edge.h"
 
+#define VERTEX_SIZE 3.0
+#define VERTEX_LAYER 0.1
+
 class Edge;
 
 class Vertex : public QGraphicsEllipseItem

@@ -1,8 +1,5 @@
 #include "vertex.h"
 
-#define VERTEX_SIZE 3.0
-#define VERTEX_LAYER 0.1
-
 Vertex::Vertex(QPointF pos, QGraphicsItem *parent)
       : QGraphicsEllipseItem(QRectF(-VERTEX_SIZE, -VERTEX_SIZE, 2 * VERTEX_SIZE, 2 * VERTEX_SIZE), parent)
 {

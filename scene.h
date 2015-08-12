@@ -19,6 +19,7 @@ private:
     Edge *newEdge;
     Frame changesFrame;
 
+    void checkBoundingRect(QGraphicsItem *item);
     void updateSelectedItems(QGraphicsSceneMouseEvent *event);
     void bindNewEdgeTo(Vertex *end);
 

@@ -97,6 +97,7 @@ void AnimationController::deleteFrame()
     {
         nextFrame();
         scene->setChangesFrame(framesList[currentFrameIndex - 1]);
+        applyChanges();
         currentFrameIndex--;
     }
 

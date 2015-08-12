@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    scene.setSceneRect(0.0, 0.0, 1000.0, 500.0);
+    scene.setSceneRect(ui->graphicsView->rect());
 
     animationController = new AnimationController(&scene);
 
@@ -120,6 +120,8 @@ void MainWindow::setCurrentFrame(int frameIndex)
     else
         for(; offset > 0; offset--)
             animationController->nextFrame();
+
+    scene.update(ui->graphicsView->rect());
 }
 
 void MainWindow::saveFile(bool saveAnyway)

@@ -1,4 +1,7 @@
 #include "scene.h"
+#include "vertex.h"
+
+#include <QGraphicsView>
 
 Scene::Scene()
 {
@@ -23,6 +26,15 @@ bool Scene::isChanged()
            !changesFrame.changedItems.isEmpty();
 }
 
+void Scene::checkBoundingRect(QGraphicsItem *item)
+{
+    if(!sceneRect().contains(item->sceneBoundingRect()))
+    {
+        setSceneRect(sceneRect().united(item->sceneBoundingRect()));
+        sceneRectChanged(sceneRect());
+    }
+}
+
 void Scene::updateSelectedItems(QGraphicsSceneMouseEvent *event)
 {
     foreach (QGraphicsItem *selectedItem, selectedItems())
@@ -35,19 +47,15 @@ void Scene::updateSelectedItems(QGraphicsSceneMouseEvent *event)
 
             if(!changesFrame.newItems.contains(selectedVertex))
             {
-//                QHash <Vertex *, QPointF>::iterator changedVertex = changesFrame.changedItems.find(selectedVertex);
                 QPointF &offset = changesFrame.changedItems[selectedVertex];
-//                if(changedVertex == changesFrame.changedItems.end())
-//                    changedVertex = changesFrame.changedItems.insert(selectedVertex, QPointF(0, 0));
 
-
-//                changedVertex.value() += event->scenePos() - event->lastScenePos();
                 offset += event->scenePos() - event->lastScenePos();
 
-//                if(changedVertex.value() == QPointF(0, 0))
-                if(offset == QPointF(0, 0))
+                if(offset.isNull())
                     changesFrame.changedItems.remove(selectedVertex);
             }
+
+            checkBoundingRect(selectedVertex);
         }
     }
 }
@@ -91,6 +99,8 @@ void Scene::addItem(QGraphicsItem *item)
         changesFrame.newItems.append(item);
 
     QGraphicsScene::addItem(item);
+
+    checkBoundingRect(item);
 }
 
 void Scene::removeItem(QGraphicsItem *item)
